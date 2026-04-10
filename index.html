@@ -460,7 +460,6 @@
 
             <!-- HERO ИЗОБРАЖЕНИЕ със сладки аватари -->
             <div class="hero-avatars">
-                <!-- Използваме качествени векторни илюстрации от DiceBear за момче и момиче -->
                 <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Toby&backgroundColor=b6e3f4&mouth=smile&eyes=happy" alt="Момче решава задачи" class="avatar-boy">
                 
                 <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 450px; margin: 0 auto; display: block; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.06));">
@@ -471,30 +470,24 @@
                         </linearGradient>
                     </defs>
                     
-                    <!-- Axis -->
                     <line x1="40" y1="90" x2="560" y2="90" stroke="var(--primary)" stroke-width="3" stroke-linecap="round"/>
                     <polygon points="560,85 572,90 560,95" fill="var(--primary)" />
                     <text x="565" y="115" font-family="Times New Roman, serif" font-style="italic" font-size="20" font-weight="bold" fill="var(--primary)" text-anchor="middle">x</text>
 
-                    <!-- Curve -->
                     <path d="M 50,20 C 90,20 110,90 150,90 C 190,90 250,150 300,90 C 350,30 410,90 450,90 C 490,90 520,160 560,160" fill="none" stroke="url(#waveGrad)" stroke-width="4" stroke-linecap="round"/>
 
-                    <!-- Signs -->
                     <text x="100" y="60" font-family="Segoe UI, sans-serif" font-size="28" font-weight="bold" fill="var(--success)" text-anchor="middle">+</text>
                     <text x="225" y="135" font-family="Segoe UI, sans-serif" font-size="32" font-weight="bold" fill="var(--danger)" text-anchor="middle">-</text>
                     <text x="375" y="60" font-family="Segoe UI, sans-serif" font-size="28" font-weight="bold" fill="var(--success)" text-anchor="middle">+</text>
                     <text x="500" y="135" font-family="Segoe UI, sans-serif" font-size="32" font-weight="bold" fill="var(--danger)" text-anchor="middle">-</text>
 
-                    <!-- Root 1 (Strict -> empty) -->
                     <circle cx="150" cy="90" r="7" fill="var(--bg)" stroke="var(--danger)" stroke-width="3" />
                     <text x="150" y="115" font-family="Times New Roman, serif" font-style="italic" font-size="18" font-weight="bold" fill="var(--text)" text-anchor="middle">-2</text>
 
-                    <!-- Root 2 (Non-strict -> solid) -->
                     <circle cx="300" cy="90" r="8" fill="var(--danger)" />
                     <circle cx="300" cy="90" r="6" fill="var(--danger)" stroke="var(--bg)" stroke-width="2" />
                     <text x="300" y="115" font-family="Times New Roman, serif" font-style="italic" font-size="18" font-weight="bold" fill="var(--text)" text-anchor="middle">1</text>
 
-                    <!-- Root 3 (Strict -> empty) -->
                     <circle cx="450" cy="90" r="7" fill="var(--bg)" stroke="var(--danger)" stroke-width="3" />
                     <text x="450" y="115" font-family="Times New Roman, serif" font-style="italic" font-size="18" font-weight="bold" fill="var(--text)" text-anchor="middle">4</text>
                 </svg>
@@ -536,7 +529,6 @@
         <div id="tutorial-screen" class="panel hidden">
             <h2 style="color: var(--primary); margin-top: 0;">Указания и Пример 👨‍🏫</h2>
             <div id="teacher-canvas">
-                <!-- Teacher animation will be injected here -->
             </div>
             <div class="controls" id="tut-controls" style="display: none; margin-top: 20px;">
                 <button class="btn btn-outline" onclick="returnToMenu()">🏠 Обратно в менюто</button>
@@ -557,7 +549,6 @@
             <div class="math-expr" id="current-expr"></div>
 
             <div class="instruction-box" id="instruction-text">
-                <!-- Instructions injected here -->
             </div>
 
             <!-- Number Line Area -->
@@ -570,7 +561,6 @@
                 <div class="number-line-container" id="nl-container">
                     <div class="number-line"></div>
                     <div class="arrow right"></div>
-                    <!-- Roots and signs generated here -->
                 </div>
             </div>
 
@@ -578,7 +568,6 @@
             <div id="stage-area-4" class="hidden">
                 <h3 style="text-align: center;">Избери правилните интервали:</h3>
                 <div class="interval-grid" id="interval-container">
-                    <!-- Intervals generated here -->
                 </div>
             </div>
 
@@ -598,7 +587,6 @@
             <div class="math-expr" id="final-expr-disp" style="font-size: 1.5rem; padding: 10px;"></div>
             
             <div id="final-number-line-container">
-                <!-- Static final number line goes here -->
             </div>
             
             <div class="final-summary">
@@ -626,7 +614,6 @@
     /* ================= BACKGROUND ANIMATIONS ================= */
     function initBackground() {
         const container = document.getElementById('bg-symbols-container');
-        // Added fun math emojis!
         const symbols = ['∫', '∑', '∞', 'x²', '±', 'π', '≠', '≤', '≥', '➕', '➖', '➗', '✖️', '📐', '✏️', '💡', '🤓'];
         
         for(let i=0; i<20; i++) {
@@ -634,7 +621,6 @@
             let isEmoji = symbols[Math.floor(Math.random() * symbols.length)];
             sym.innerText = isEmoji;
             
-            // Differentiate math symbols and emojis
             if (isEmoji.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]/)) {
                 sym.className = 'bg-emoji';
                 sym.style.animationDelay = (Math.random() * -20) + 's';
@@ -679,9 +665,10 @@
         type: 't-linear',
         stage: 1,
         problem: null,
-        rootsData: [], 
-        intervalsData: [], 
-        noSolutionBox: null 
+        rootsData: [],
+        intervalsData: [],
+        pointSolutions: [],
+        noSolutionBox: null
     };
 
     const Stats = {
@@ -728,6 +715,8 @@
     }
 
     function returnToMenu() { 
+        let slider = document.querySelector('.x-slider');
+        if (slider) slider.style.display = '';
         showPanel('start-screen'); 
     }
 
@@ -738,7 +727,7 @@
         element.innerHTML = '';
         element.classList.add('typewriter');
         for (let i = 0; i < text.length; i++) {
-            if (!tutorialActive) return; // Allow canceling
+            if (!tutorialActive) return;
             element.innerHTML += text.charAt(i);
             await new Promise(r => setTimeout(r, speed));
         }
@@ -750,7 +739,7 @@
         tutorialActive = true;
         document.getElementById('tut-controls').style.display = 'none';
         const canvas = document.getElementById('teacher-canvas');
-        canvas.innerHTML = ''; // Reset
+        canvas.innerHTML = '';
 
         const sleep = ms => new Promise(r => setTimeout(r, ms));
         const addLine = () => {
@@ -760,19 +749,16 @@
             return div;
         };
 
-        // Step 1: Greeting
         let line1 = addLine();
         line1.classList.add('visible');
         await typeWriterEffect(line1, "Здравей! Да решим заедно една задача от тип \"Смесени\". ✍️");
         if(!tutorialActive) return; await sleep(600);
 
-        // Step 2: The Expression (Using proper math symbols)
         let line2 = addLine();
         line2.innerHTML = `<div style="text-align:center; margin: 15px 0;"><div class="math-expr" style="display:inline-flex; padding: 15px 30px;"><div class="fraction"><div class="num">(2 - x)(x - 3)<sup>2</sup></div><div class="den">x + 1</div></div><div class="operator">≥ 0</div></div></div>`;
         line2.classList.add('visible');
         if(!tutorialActive) return; await sleep(1200);
 
-        // Step 3: Roots
         let line3 = addLine();
         line3.classList.add('visible');
         await typeWriterEffect(line3, "1. Намираме корените:");
@@ -791,7 +777,6 @@
         document.getElementById('tut-root3').style.opacity = 1;
         if(!tutorialActive) return; await sleep(1500);
 
-        // Step 4: Number line
         let line5 = addLine();
         line5.classList.add('visible');
         await typeWriterEffect(line5, "2. Нанасяме на числовата ос:");
@@ -802,17 +787,14 @@
             <div class="tut-line-draw" id="tut-line"></div>
             <div class="tut-arrow" id="tut-arrow"></div>
             
-            <!-- x=-1 -->
             <div class="tut-point empty" id="tut-p0" style="left: 20%"></div>
             <div class="tut-plabel" id="tut-l0" style="left: 20%; transform: translateX(-50%)">-1</div>
             <div class="tut-sign" id="tut-s0" style="left: 10%; color: var(--danger)">-</div>
 
-            <!-- x=2 -->
             <div class="tut-point solid" id="tut-p1" style="left: 50%"></div>
             <div class="tut-plabel" id="tut-l1" style="left: 50%; transform: translateX(-50%)">2</div>
             <div class="tut-sign" id="tut-s1" style="left: 35%; color: var(--success)">+</div>
             
-            <!-- x=3 -->
             <div class="tut-point solid" id="tut-p2" style="left: 80%"></div>
             <div class="tut-plabel" id="tut-l2" style="left: 80%; transform: translateX(-50%)">3</div>
             <div class="tut-sign" id="tut-s2" style="left: 65%; color: var(--danger)">-</div>
@@ -823,13 +805,11 @@
         if(!tutorialActive) return; await sleep(500);
         nlWrap.style.opacity = 1;
         
-        // Draw line
         if(!tutorialActive) return; await sleep(200);
         document.getElementById('tut-line').style.width = '85%';
         if(!tutorialActive) return; await sleep(1300);
         document.getElementById('tut-arrow').style.opacity = 1;
         
-        // Pop points
         if(!tutorialActive) return; await sleep(600);
         document.getElementById('tut-p0').style.opacity = 1;
         document.getElementById('tut-p0').style.transform = 'scale(1)';
@@ -845,7 +825,6 @@
         document.getElementById('tut-p2').style.transform = 'scale(1)';
         document.getElementById('tut-l2').style.opacity = 1;
 
-        // Step 5: Signs
         if(!tutorialActive) return; await sleep(1000);
         let line6 = addLine();
         line6.classList.add('visible');
@@ -872,7 +851,6 @@
         let s0 = document.getElementById('tut-s0');
         s0.style.opacity = 1; s0.style.transform = 'translateY(0)';
         
-        // Step 6: Answer (Using proper ≥ character)
         if(!tutorialActive) return; await sleep(1500);
         let line8 = addLine();
         line8.classList.add('visible');
@@ -886,7 +864,6 @@
         if(!tutorialActive) return; await sleep(1000);
         document.getElementById('tut-controls').style.display = 'block';
     }
-
 
     /* ================= GENERATOR ================= */
     function generateProblem() {
@@ -907,14 +884,13 @@
             let isNum = true;
             let isNegativeX = false;
 
-            // Updated Power logic to include odd powers (multiplicities 3, 4, etc)
             if (State.type === 't-quad') {
                 if (Math.random() < 0.8) {
-                    p = Math.floor(Math.random() * 3) + 2; // Powers 2, 3, or 4
+                    p = Math.floor(Math.random() * 3) + 2;
                 }
             } else if (State.type === 't-frac' || State.type === 't-mixed') {
                 if (Math.random() < 0.4) {
-                    p = Math.floor(Math.random() * 3) + 2; // Powers 2, 3, or 4
+                    p = Math.floor(Math.random() * 3) + 2;
                 }
                 if (i === numFactors - 1 || (numFactors > 2 && i === numFactors - 2 && Math.random() < 0.5)) {
                     isNum = false; 
@@ -1004,7 +980,7 @@
 
     /* ================= STAGE MANAGEMENT ================= */
     function startPractice() {
-        tutorialActive = false; // Kill tutorial if running
+        tutorialActive = false;
         let nameInput = document.getElementById('student-name-input').value.trim();
         if(nameInput) {
             Stats.name = nameInput;
@@ -1056,7 +1032,7 @@
         else if (State.stage === 4) {
             document.getElementById('stage-area-4').classList.remove('hidden');
             document.getElementById('live-calc').classList.add('hidden');
-            inst.innerHTML = "<strong>Стъпка 4:</strong> Избери интервалите, които удовлетворяват неравенството.";
+            inst.innerHTML = "<strong>Стъпка 4:</strong> Избери интервалите или отделните точки, които удовлетворяват неравенството.";
             setupStage4();
         }
     }
@@ -1065,9 +1041,8 @@
         const msg = document.getElementById('feedback');
         const appPanel = document.getElementById('app-container');
         
-        // Remove previous animations
         appPanel.classList.remove('shake-panel', 'pulse-success');
-        void appPanel.offsetWidth; // trigger reflow
+        void appPanel.offsetWidth;
 
         if(isSuccess) {
             const successMsgs = ['Браво! 🎉', 'Точно така! 🚀', 'Супер си! ⭐', 'Отлична работа! 🧠', 'Перфектно! 🎯'];
@@ -1312,54 +1287,116 @@
     function setupStage4() {
         let slider = document.querySelector('.x-slider');
         if (slider) slider.style.display = 'none';
-        
+
         State.intervalsData.forEach(inv => {
-            if (inv.signBtnEl) { inv.signBtnEl.onclick = null; inv.signBtnEl.style.cursor = 'default'; }
+            if (inv.signBtnEl) {
+                inv.signBtnEl.onclick = null;
+                inv.signBtnEl.style.cursor = 'default';
+            }
         });
+
+        State.pointSolutions = [];
 
         const container = document.getElementById('interval-container');
         container.innerHTML = '';
-        
+
         let op = State.problem.op;
         let targetsPositive = (op === '>' || op === '≥');
         let hasSolution = false;
 
-        for(let i=0; i<State.intervalsData.length; i++) {
+        const deselectNoSolution = () => {
+            if (State.noSolutionBox && State.noSolutionBox.el) {
+                State.noSolutionBox.el.classList.remove('selected');
+            }
+        };
+
+        // 1) Интервали
+        for (let i = 0; i < State.intervalsData.length; i++) {
             let inv = State.intervalsData[i];
-            let startVal = i === 0 ? -Infinity : State.rootsData[i-1].val;
+            let startVal = i === 0 ? -Infinity : State.rootsData[i - 1].val;
             let endVal = i === State.intervalsData.length - 1 ? Infinity : State.rootsData[i].val;
-            
-            let startStrict = true; let endStrict = true;
-            if(i > 0) startStrict = State.rootsData[i-1].expectsStrict;
-            if(i < State.rootsData.length) endStrict = State.rootsData[i].expectsStrict;
+
+            let startStrict = true;
+            let endStrict = true;
+
+            if (i > 0) startStrict = State.rootsData[i - 1].expectsStrict;
+            if (i < State.rootsData.length) endStrict = State.rootsData[i].expectsStrict;
 
             let text = `${formatInterval(true, startVal, startStrict)}${formatInterval(false, endVal, endStrict)}`;
-            let isSolution = (inv.expectedSign === '+' && targetsPositive) || (inv.expectedSign === '-' && !targetsPositive);
+
+            let isSolution =
+                (inv.expectedSign === '+' && targetsPositive) ||
+                (inv.expectedSign === '-' && !targetsPositive);
+
             if (isSolution) hasSolution = true;
 
-            inv.isSolution = isSolution; inv.text = text;
+            inv.isSolution = isSolution;
+            inv.text = text;
+            inv.order = i * 2;
 
             let box = document.createElement('div');
-            box.className = 'interval-box'; box.innerText = text;
+            box.className = 'interval-box';
+            box.innerText = text;
             box.onclick = () => {
                 box.classList.toggle('selected');
-                if(box.classList.contains('selected') && State.noSolutionBox.el) {
-                    State.noSolutionBox.el.classList.remove('selected');
-                }
+                if (box.classList.contains('selected')) deselectNoSolution();
             };
+
             inv.boxEl = box;
             container.appendChild(box);
         }
 
+        // 2) Изолирани точки {a}
+        State.rootsData.forEach((r, idx) => {
+            if (r.expectsStrict) return;
+
+            const leftInterval = State.intervalsData[idx];
+            const rightInterval = State.intervalsData[idx + 1];
+
+            const leftIsSolution = leftInterval ? leftInterval.isSolution : false;
+            const rightIsSolution = rightInterval ? rightInterval.isSolution : false;
+
+            if (!leftIsSolution && !rightIsSolution) {
+                hasSolution = true;
+
+                const pointText = `{${r.val}}`;
+
+                let box = document.createElement('div');
+                box.className = 'interval-box';
+                box.innerText = pointText;
+                box.onclick = () => {
+                    box.classList.toggle('selected');
+                    if (box.classList.contains('selected')) deselectNoSolution();
+                };
+
+                State.pointSolutions.push({
+                    val: r.val,
+                    text: pointText,
+                    boxEl: box,
+                    isSolution: true,
+                    order: idx * 2 + 1
+                });
+
+                container.appendChild(box);
+            }
+        });
+
+        // 3) Няма решение
         let noSolBox = document.createElement('div');
         noSolBox.className = 'interval-box no-sol-box';
         noSolBox.innerText = '∅ (Няма решение)';
         noSolBox.onclick = () => {
-            document.querySelectorAll('.interval-box:not(.no-sol-box)').forEach(b => b.classList.remove('selected'));
+            document.querySelectorAll('#interval-container .interval-box').forEach(b => {
+                if (b !== noSolBox) b.classList.remove('selected');
+            });
             noSolBox.classList.toggle('selected');
         };
-        
-        State.noSolutionBox = { el: noSolBox, isExpected: !hasSolution };
+
+        State.noSolutionBox = {
+            el: noSolBox,
+            isExpected: !hasSolution
+        };
+
         container.appendChild(noSolBox);
     }
 
@@ -1398,23 +1435,52 @@
 
     function checkStage4() {
         let allCorrect = true;
-        let solStrings = [];
+        let selectedParts = [];
 
+        const markWrong = (el) => {
+            el.style.borderColor = 'var(--danger)';
+            setTimeout(() => el.style.borderColor = '', 1000);
+        };
+
+        // Интервали
         State.intervalsData.forEach(inv => {
             let isSelected = inv.boxEl.classList.contains('selected');
-            if(isSelected !== inv.isSolution) {
+
+            if (isSelected !== inv.isSolution) {
                 allCorrect = false;
-                inv.boxEl.style.borderColor = 'var(--danger)';
-                setTimeout(() => inv.boxEl.style.borderColor = '', 1000);
+                markWrong(inv.boxEl);
             }
-            if(isSelected && inv.isSolution) solStrings.push(inv.text);
+
+            if (isSelected && inv.isSolution) {
+                selectedParts.push({
+                    order: inv.order,
+                    text: inv.text
+                });
+            }
         });
 
+        // Изолирани точки
+        State.pointSolutions.forEach(pt => {
+            let isSelected = pt.boxEl.classList.contains('selected');
+
+            if (isSelected !== pt.isSolution) {
+                allCorrect = false;
+                markWrong(pt.boxEl);
+            }
+
+            if (isSelected && pt.isSolution) {
+                selectedParts.push({
+                    order: pt.order,
+                    text: pt.text
+                });
+            }
+        });
+
+        // ∅
         let isNoSolSelected = State.noSolutionBox.el.classList.contains('selected');
         if (isNoSolSelected !== State.noSolutionBox.isExpected) {
             allCorrect = false;
-            State.noSolutionBox.el.style.borderColor = 'var(--danger)';
-            setTimeout(() => State.noSolutionBox.el.style.borderColor = '', 1000);
+            markWrong(State.noSolutionBox.el);
         }
 
         if(allCorrect) {
@@ -1422,10 +1488,21 @@
             document.getElementById('display-total-solved').innerText = Stats.totalSolved;
 
             triggerCelebration();
-            let finalStr = State.noSolutionBox.isExpected ? '∅ (Няма решение)' : solStrings.join(' ∪ ');
-            document.getElementById('final-answer-string').innerText = `x ∈ ${finalStr}`;
+
+            selectedParts.sort((a, b) => a.order - b.order);
+
+            let finalStr = State.noSolutionBox.isExpected
+                ? '∅'
+                : selectedParts.map(p => p.text).join(' ∪ ');
+
+            document.getElementById('final-answer-string').innerText =
+                State.noSolutionBox.isExpected
+                    ? '∅'
+                    : `x ∈ ${finalStr}`;
+
             renderExpression(State.problem, 'final-expr-disp');
-            renderFinalNumberLine(); 
+            renderFinalNumberLine();
+
             setTimeout(() => showPanel('final-screen'), 1500);
         } else {
             showFeedback(false);
@@ -1454,3 +1531,5 @@
 
 </body>
 </html>
+```
+
