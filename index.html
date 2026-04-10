@@ -377,19 +377,23 @@
         .tut-plabel { position: absolute; top: 55px; font-weight: bold; font-family: 'Times New Roman', serif; opacity: 0; transition: 0.5s; }
         .tut-sign { position: absolute; top: -10px; font-size: 1.8rem; font-weight: bold; opacity: 0; transition: 0.5s transform 0.5s; transform: translateY(-20px); }
 
-        /* AVATARS */
-        .hero-avatars {
-            position: relative; max-width: 550px; margin: 0 auto 25px;
-            display: flex; justify-content: center; align-items: center;
+        /* HERO IMAGE */
+        .hero-image-box {
+            max-width: 760px;
+            margin: 0 auto 28px;
+            text-align: center;
         }
-        .hero-avatars img {
-            position: absolute; top: -15px; width: 85px; height: 85px; border-radius: 50%;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.12); z-index: 2; transition: 0.3s;
-            background: white; border: 3px solid var(--bg);
+
+        .hero-main-image {
+            width: 100%;
+            max-width: 760px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 18px;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+            border: 2px solid var(--card-border);
         }
-        .hero-avatars img:hover { transform: scale(1.1) !important; }
-        .avatar-boy { left: -10px; transform: rotate(-8deg); }
-        .avatar-girl { right: -10px; transform: rotate(8deg); }
 
         /* ========= RESPONSIVE MOBILE FIXES ========= */
         @media (max-width: 600px) {
@@ -405,16 +409,7 @@
             .parity-select { font-size: 0.7rem; padding: 2px 4px; }
             header h1 { font-size: 1.2rem; }
             .header-stats { justify-content: center; font-size: 0.85rem; padding: 6px 10px; gap: 10px; }
-            
-            /* Better Avatar layout for phones */
-            .hero-avatars img { width: 65px; height: 65px; top: -5px; }
-            .avatar-boy { left: 0px; }
-            .avatar-girl { right: 0px; }
-            
-            /* Controls adjustment */
             .btn { padding: 10px 20px; font-size: 0.95rem; width: 100%; max-width: 300px; margin: 0 auto; }
-            
-            /* Teacher canvas adjustment */
             #teacher-canvas { font-size: 1rem; padding: 15px; }
             .tut-number-line-wrap { margin: 20px 0; }
         }
@@ -458,41 +453,8 @@
                 <button class="btn btn-outline" style="width: auto; max-width: 100%;" onclick="startTutorialAnimation()">📖 Виж кратки указания и пример</button>
             </div>
 
-            <!-- HERO ИЗОБРАЖЕНИЕ със сладки аватари -->
-            <div class="hero-avatars">
-                <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Toby&backgroundColor=b6e3f4&mouth=smile&eyes=happy" alt="Момче решава задачи" class="avatar-boy">
-                
-                <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 450px; margin: 0 auto; display: block; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.06));">
-                    <defs>
-                        <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="var(--accent)" />
-                            <stop offset="100%" stop-color="var(--accent2)" />
-                        </linearGradient>
-                    </defs>
-                    
-                    <line x1="40" y1="90" x2="560" y2="90" stroke="var(--primary)" stroke-width="3" stroke-linecap="round"/>
-                    <polygon points="560,85 572,90 560,95" fill="var(--primary)" />
-                    <text x="565" y="115" font-family="Times New Roman, serif" font-style="italic" font-size="20" font-weight="bold" fill="var(--primary)" text-anchor="middle">x</text>
-
-                    <path d="M 50,20 C 90,20 110,90 150,90 C 190,90 250,150 300,90 C 350,30 410,90 450,90 C 490,90 520,160 560,160" fill="none" stroke="url(#waveGrad)" stroke-width="4" stroke-linecap="round"/>
-
-                    <text x="100" y="60" font-family="Segoe UI, sans-serif" font-size="28" font-weight="bold" fill="var(--success)" text-anchor="middle">+</text>
-                    <text x="225" y="135" font-family="Segoe UI, sans-serif" font-size="32" font-weight="bold" fill="var(--danger)" text-anchor="middle">-</text>
-                    <text x="375" y="60" font-family="Segoe UI, sans-serif" font-size="28" font-weight="bold" fill="var(--success)" text-anchor="middle">+</text>
-                    <text x="500" y="135" font-family="Segoe UI, sans-serif" font-size="32" font-weight="bold" fill="var(--danger)" text-anchor="middle">-</text>
-
-                    <circle cx="150" cy="90" r="7" fill="var(--bg)" stroke="var(--danger)" stroke-width="3" />
-                    <text x="150" y="115" font-family="Times New Roman, serif" font-style="italic" font-size="18" font-weight="bold" fill="var(--text)" text-anchor="middle">-2</text>
-
-                    <circle cx="300" cy="90" r="8" fill="var(--danger)" />
-                    <circle cx="300" cy="90" r="6" fill="var(--danger)" stroke="var(--bg)" stroke-width="2" />
-                    <text x="300" y="115" font-family="Times New Roman, serif" font-style="italic" font-size="18" font-weight="bold" fill="var(--text)" text-anchor="middle">1</text>
-
-                    <circle cx="450" cy="90" r="7" fill="var(--bg)" stroke="var(--danger)" stroke-width="3" />
-                    <text x="450" y="115" font-family="Times New Roman, serif" font-style="italic" font-size="18" font-weight="bold" fill="var(--text)" text-anchor="middle">4</text>
-                </svg>
-
-                <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Mia&backgroundColor=fbcfe8&mouth=smile&eyes=happy" alt="Момиче решава задачи" class="avatar-girl">
+            <div class="hero-image-box">
+                <img src="MIT.png" alt="Метод на интервалите" class="hero-main-image">
             </div>
 
             <div class="user-input-group">
@@ -528,8 +490,7 @@
         <!-- TUTORIAL SCREEN -->
         <div id="tutorial-screen" class="panel hidden">
             <h2 style="color: var(--primary); margin-top: 0;">Указания и Пример 👨‍🏫</h2>
-            <div id="teacher-canvas">
-            </div>
+            <div id="teacher-canvas"></div>
             <div class="controls" id="tut-controls" style="display: none; margin-top: 20px;">
                 <button class="btn btn-outline" onclick="returnToMenu()">🏠 Обратно в менюто</button>
                 <button class="btn btn-purple" onclick="startPractice()">🚀 Разбрах! Нека решаваме</button>
@@ -548,12 +509,9 @@
 
             <div class="math-expr" id="current-expr"></div>
 
-            <div class="instruction-box" id="instruction-text">
-            </div>
+            <div class="instruction-box" id="instruction-text"></div>
 
-            <!-- Number Line Area -->
             <div id="stage-area-1-3">
-                
                 <div class="live-calc-panel hidden" id="live-calc">
                     Тествай стойност: x = <span id="calc-x">0</span> ➔ Изразът е <span id="calc-res">...</span>
                 </div>
@@ -564,11 +522,9 @@
                 </div>
             </div>
 
-            <!-- Intervals Area (Stage 4) -->
             <div id="stage-area-4" class="hidden">
                 <h3 style="text-align: center;">Избери правилните интервали:</h3>
-                <div class="interval-grid" id="interval-container">
-                </div>
+                <div class="interval-grid" id="interval-container"></div>
             </div>
 
             <div id="feedback" class="feedback-msg"></div>
@@ -586,8 +542,7 @@
             
             <div class="math-expr" id="final-expr-disp" style="font-size: 1.5rem; padding: 10px;"></div>
             
-            <div id="final-number-line-container">
-            </div>
+            <div id="final-number-line-container"></div>
             
             <div class="final-summary">
                 Решение: <br>
@@ -600,18 +555,15 @@
             </div>
         </div>
 
-        <!-- FOOTER CREDITS -->
         <div class="app-footer">
-            Идея и педагогически решения: <span>Валя Витковска</span> &bull; Създаден с <span>Gemini</span>
+            Идея и педагогически решения: <span>Валя Витковска</span> &bull; Реализация: <span>Gemini</span>
         </div>
 
     </div>
 
-    <!-- Confetti Container -->
     <div class="celebration-overlay" id="celebration"></div>
 
 <script>
-    /* ================= BACKGROUND ANIMATIONS ================= */
     function initBackground() {
         const container = document.getElementById('bg-symbols-container');
         const symbols = ['∫', '∑', '∞', 'x²', '±', 'π', '≠', '≤', '≥', '➕', '➖', '➗', '✖️', '📐', '✏️', '💡', '🤓'];
@@ -652,7 +604,6 @@
         }
     }
 
-    /* ================= THEME TOGGLE ================= */
     let isDark = false;
     function toggleTheme() {
         isDark = !isDark;
@@ -660,7 +611,6 @@
         document.getElementById('theme-toggle').innerText = isDark ? '🌙 Тъмна' : '☀️ Светла';
     }
 
-    /* ================= APP STATE ================= */
     const State = {
         type: 't-linear',
         stage: 1,
@@ -700,7 +650,6 @@
         setTimeout(() => msg.remove(), 5500);
     }
 
-    /* ================= NAVIGATION ================= */
     function selectType(type) {
         document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active-type'));
         document.querySelector(`.type-btn.${type}`).classList.add('active-type');
@@ -720,7 +669,6 @@
         showPanel('start-screen'); 
     }
 
-    /* ================= TEACHER TUTORIAL ANIMATION ================= */
     let tutorialActive = false;
     
     async function typeWriterEffect(element, text, speed = 35) {
@@ -751,7 +699,7 @@
 
         let line1 = addLine();
         line1.classList.add('visible');
-        await typeWriterEffect(line1, "Здравей! Да решим заедно една задача от тип \"Смесени\". ✍️");
+        await typeWriterEffect(line1, 'Здравей! Да решим заедно една задача от тип "Смесени". ✍️');
         if(!tutorialActive) return; await sleep(600);
 
         let line2 = addLine();
@@ -761,7 +709,7 @@
 
         let line3 = addLine();
         line3.classList.add('visible');
-        await typeWriterEffect(line3, "1. Намираме корените:");
+        await typeWriterEffect(line3, '1. Намираме корените:');
         if(!tutorialActive) return; await sleep(300);
 
         let line4 = addLine();
@@ -779,7 +727,7 @@
 
         let line5 = addLine();
         line5.classList.add('visible');
-        await typeWriterEffect(line5, "2. Нанасяме на числовата ос:");
+        await typeWriterEffect(line5, '2. Нанасяме на числовата ос:');
         
         let nlWrap = document.createElement('div');
         nlWrap.className = 'tut-number-line-wrap';
@@ -828,7 +776,7 @@
         if(!tutorialActive) return; await sleep(1000);
         let line6 = addLine();
         line6.classList.add('visible');
-        await typeWriterEffect(line6, "3. Определяме знаците: Старшият коефициент е отрицателен заради (2 - x) ➔ най-вдясно е минус (-).");
+        await typeWriterEffect(line6, '3. Определяме знаците: Старшият коефициент е отрицателен заради (2 - x) ➔ най-вдясно е минус (-).');
         
         if(!tutorialActive) return; await sleep(800);
         let s3 = document.getElementById('tut-s3');
@@ -837,7 +785,7 @@
         if(!tutorialActive) return; await sleep(1000);
         let line7 = addLine();
         line7.classList.add('visible');
-        await typeWriterEffect(line7, "Коренът 3 е от четна кратност ➔ знакът се запазва. Корените 2 и -1 са от нечетна ➔ знакът се сменя!");
+        await typeWriterEffect(line7, 'Коренът 3 е от четна кратност ➔ знакът се запазва. Корените 2 и -1 са от нечетна ➔ знакът се сменя!');
         
         if(!tutorialActive) return; await sleep(600);
         let s2 = document.getElementById('tut-s2');
@@ -854,7 +802,7 @@
         if(!tutorialActive) return; await sleep(1500);
         let line8 = addLine();
         line8.classList.add('visible');
-        await typeWriterEffect(line8, "4. Търсим ≥ 0 (плюс и нула). Взимаме интервала (-1, 2], като при -1 скобата е отворена (празен кръг). Накрая добавяме и точката 3!");
+        await typeWriterEffect(line8, '4. Търсим ≥ 0 (плюс и нула). Взимаме интервала (-1, 2], като при -1 скобата е отворена (празен кръг). Накрая добавяме и точката 3!');
         
         if(!tutorialActive) return; await sleep(1500);
         let line9 = addLine();
@@ -865,7 +813,6 @@
         document.getElementById('tut-controls').style.display = 'block';
     }
 
-    /* ================= GENERATOR ================= */
     function generateProblem() {
         let numFactors;
         if(State.type === 't-linear') numFactors = 2;
@@ -875,7 +822,6 @@
 
         let factors = [];
         let possibleRoots = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
-        
         possibleRoots.sort(() => 0.5 - Math.random());
 
         for(let i=0; i<numFactors; i++) {
@@ -885,21 +831,15 @@
             let isNegativeX = false;
 
             if (State.type === 't-quad') {
-                if (Math.random() < 0.8) {
-                    p = Math.floor(Math.random() * 3) + 2;
-                }
+                if (Math.random() < 0.8) p = Math.floor(Math.random() * 3) + 2;
             } else if (State.type === 't-frac' || State.type === 't-mixed') {
-                if (Math.random() < 0.4) {
-                    p = Math.floor(Math.random() * 3) + 2;
-                }
+                if (Math.random() < 0.4) p = Math.floor(Math.random() * 3) + 2;
                 if (i === numFactors - 1 || (numFactors > 2 && i === numFactors - 2 && Math.random() < 0.5)) {
-                    isNum = false; 
+                    isNum = false;
                 }
             }
             
-            if (State.type === 't-mixed' && Math.random() < 0.3) {
-                isNegativeX = true; 
-            }
+            if (State.type === 't-mixed' && Math.random() < 0.3) isNegativeX = true;
 
             factors.push({ type: 'linear', root: r, power: p, isNumerator: isNum, isNegativeX: isNegativeX });
         }
@@ -965,20 +905,15 @@
 
         let html = '';
         if (denHtml !== '') {
-            html = `<div class="fraction">
-                        <div class="num">${numHtml}</div>
-                        <div class="den">${denHtml}</div>
-                    </div>`;
+            html = `<div class="fraction"><div class="num">${numHtml}</div><div class="den">${denHtml}</div></div>`;
         } else {
             html = numHtml;
         }
 
         html += `<div class="operator">${prob.op} 0</div>`;
-        
         document.getElementById(targetId).innerHTML = html;
     }
 
-    /* ================= STAGE MANAGEMENT ================= */
     function startPractice() {
         tutorialActive = false;
         let nameInput = document.getElementById('student-name-input').value.trim();
@@ -1018,21 +953,21 @@
         let inst = document.getElementById('instruction-text');
 
         if(State.stage === 1) {
-            inst.innerHTML = "<strong>Стъпка 1:</strong> Кликни върху корените, за да определиш дали са включени (плътен кръг) или изключени (празен кръг).<br><small>Подсказка: Корените от знаменателя са винаги изключени. Тези от числителя зависят от знака (строг/нестрог).</small>";
+            inst.innerHTML = '<strong>Стъпка 1:</strong> Кликни върху корените, за да определиш дали са включени (плътен кръг) или изключени (празен кръг).<br><small>Подсказка: Корените от знаменателя са винаги изключени. Тези от числителя зависят от знака (строг/нестрог).</small>';
             renderNumberLineStage1();
         } 
         else if (State.stage === 2) {
-            inst.innerHTML = "<strong>Стъпка 2:</strong> Определи кратността на всеки корен спрямо степента му в израза.";
+            inst.innerHTML = '<strong>Стъпка 2:</strong> Определи кратността на всеки корен спрямо степента му в израза.';
             setupStage2();
         }
         else if (State.stage === 3) {
-            inst.innerHTML = "<strong>Стъпка 3:</strong> Кликни в интервалите, за да определиш знака (+ или -). Можеш да използваш плъзгача за тестване.";
+            inst.innerHTML = '<strong>Стъпка 3:</strong> Кликни в интервалите, за да определиш знака (+ или -). Можеш да използваш плъзгача за тестване.';
             setupStage3();
         }
         else if (State.stage === 4) {
             document.getElementById('stage-area-4').classList.remove('hidden');
             document.getElementById('live-calc').classList.add('hidden');
-            inst.innerHTML = "<strong>Стъпка 4:</strong> Избери интервалите или отделните точки, които удовлетворяват неравенството.";
+            inst.innerHTML = '<strong>Стъпка 4:</strong> Избери интервалите или отделните точки, които удовлетворяват неравенството.';
             setupStage4();
         }
     }
@@ -1064,7 +999,6 @@
         else if(State.stage === 4) checkStage4();
     }
 
-    /* ================= STAGE 1: ROOTS ================= */
     function prepareRootsData() {
         State.rootsData = [];
         let linearFactors = State.problem.factors.filter(f => f.type === 'linear');
@@ -1076,14 +1010,14 @@
         let spread = Math.max(maxRoot - minRoot, 2);
         
         linearFactors.forEach(f => {
-            let pct = 15 + ((f.root - minRoot) / spread) * 70; 
-            let expectsStrict = true; 
+            let pct = 15 + ((f.root - minRoot) / spread) * 70;
+            let expectsStrict = true;
             if(f.isNumerator && (State.problem.op === '≥' || State.problem.op === '≤')) {
-                expectsStrict = false; 
+                expectsStrict = false;
             }
             State.rootsData.push({
                 val: f.root, power: f.power, isNum: f.isNumerator,
-                pct: pct, expectsStrict: expectsStrict, currentStrict: null 
+                pct: pct, expectsStrict: expectsStrict, currentStrict: null
             });
         });
     }
@@ -1092,7 +1026,7 @@
         const container = document.getElementById('nl-container');
         container.querySelectorAll('.root-marker, .root-label, .parity-badge, .sign-btn-large, .x-slider').forEach(e => e.remove());
 
-        State.rootsData.forEach((r, i) => {
+        State.rootsData.forEach((r) => {
             let lbl = document.createElement('div');
             lbl.className = 'root-label';
             lbl.style.left = r.pct + '%';
@@ -1103,9 +1037,9 @@
             marker.className = 'root-marker unknown';
             marker.style.left = r.pct + '%';
             marker.onclick = () => {
-                if(r.currentStrict === null) r.currentStrict = false; 
-                else if(r.currentStrict === false) r.currentStrict = true; 
-                else r.currentStrict = null; 
+                if(r.currentStrict === null) r.currentStrict = false;
+                else if(r.currentStrict === false) r.currentStrict = true;
+                else r.currentStrict = null;
 
                 marker.className = 'root-marker';
                 if(r.currentStrict === null) marker.classList.add('unknown');
@@ -1135,18 +1069,17 @@
         }
     }
 
-    /* ================= STAGE 2: PARITY ================= */
     function setupStage2() {
         const container = document.getElementById('nl-container');
         State.rootsData.forEach(r => {
-            r.markerEl.onclick = null; 
+            r.markerEl.onclick = null;
             let badge = document.createElement('div');
             badge.className = 'parity-badge';
             badge.style.left = r.pct + '%';
 
             let sel = document.createElement('select');
             sel.className = 'parity-select';
-            sel.innerHTML = `<option value="?">?</option><option value="odd">Нечетна кратност</option><option value="even">Четна кратност</option>`;
+            sel.innerHTML = '<option value="?">?</option><option value="odd">Нечетна кратност</option><option value="even">Четна кратност</option>';
             
             r.paritySelectEl = sel;
             badge.appendChild(sel);
@@ -1176,7 +1109,6 @@
         }
     }
 
-    /* ================= STAGE 3: SIGNS ================= */
     function evaluateMath(x) {
         let num = 1; let den = 1;
         State.problem.factors.forEach(f => {
@@ -1201,7 +1133,7 @@
 
         for(let i=0; i<=State.rootsData.length; i++) {
             let pct, val;
-            if(i === State.rootsData.length) { pct = 100; val = 10; } 
+            if(i === State.rootsData.length) { pct = 100; val = 10; }
             else { pct = State.rootsData[i].pct; val = State.rootsData[i].val; }
 
             let midPct = prevPct + (pct - prevPct)/2;
@@ -1244,15 +1176,15 @@
             document.getElementById('calc-x').innerText = x.toFixed(1);
             let val = evaluateMath(x);
             let resSpan = document.getElementById('calc-res');
-            if(val === null) { resSpan.innerHTML = '<span style="color:var(--danger)">Недефиниран</span>'; } 
-            else if (val === 0) { resSpan.innerHTML = '0'; } 
+            if(val === null) { resSpan.innerHTML = '<span style="color:var(--danger)">Недефиниран</span>'; }
+            else if (val === 0) { resSpan.innerHTML = '0'; }
             else {
                 let sign = val > 0 ? '+' : '-';
                 let col = val > 0 ? 'var(--success)' : 'var(--danger)';
                 resSpan.innerHTML = `<span style="color:${col}; font-weight:bold;">${sign} (${Math.abs(val) > 100 ? '> 100' : val.toFixed(2)})</span>`;
             }
         };
-        slider.oninput({target: {value: 0}}); 
+        slider.oninput({target: {value: 0}});
         container.appendChild(slider);
     }
 
@@ -1275,7 +1207,6 @@
         }
     }
 
-    /* ================= STAGE 4: INTERVALS ================= */
     function formatInterval(isStart, val, isStrict) {
         if(val === -Infinity) return '(-∞';
         if(val === Infinity) return '+∞)';
@@ -1310,7 +1241,6 @@
             }
         };
 
-        // 1) Интервали
         for (let i = 0; i < State.intervalsData.length; i++) {
             let inv = State.intervalsData[i];
             let startVal = i === 0 ? -Infinity : State.rootsData[i - 1].val;
@@ -1346,7 +1276,6 @@
             container.appendChild(box);
         }
 
-        // 2) Изолирани точки {a}
         State.rootsData.forEach((r, idx) => {
             if (r.expectsStrict) return;
 
@@ -1381,7 +1310,6 @@
             }
         });
 
-        // 3) Няма решение
         let noSolBox = document.createElement('div');
         noSolBox.className = 'interval-box no-sol-box';
         noSolBox.innerText = '∅ (Няма решение)';
@@ -1442,7 +1370,6 @@
             setTimeout(() => el.style.borderColor = '', 1000);
         };
 
-        // Интервали
         State.intervalsData.forEach(inv => {
             let isSelected = inv.boxEl.classList.contains('selected');
 
@@ -1459,7 +1386,6 @@
             }
         });
 
-        // Изолирани точки
         State.pointSolutions.forEach(pt => {
             let isSelected = pt.boxEl.classList.contains('selected');
 
@@ -1476,7 +1402,6 @@
             }
         });
 
-        // ∅
         let isNoSolSelected = State.noSolutionBox.el.classList.contains('selected');
         if (isNoSolSelected !== State.noSolutionBox.isExpected) {
             allCorrect = false;
@@ -1491,14 +1416,10 @@
 
             selectedParts.sort((a, b) => a.order - b.order);
 
-            let finalStr = State.noSolutionBox.isExpected
-                ? '∅'
-                : selectedParts.map(p => p.text).join(' ∪ ');
+            let finalStr = State.noSolutionBox.isExpected ? '∅' : selectedParts.map(p => p.text).join(' ∪ ');
 
             document.getElementById('final-answer-string').innerText =
-                State.noSolutionBox.isExpected
-                    ? '∅'
-                    : `x ∈ ${finalStr}`;
+                State.noSolutionBox.isExpected ? '∅' : `x ∈ ${finalStr}`;
 
             renderExpression(State.problem, 'final-expr-disp');
             renderFinalNumberLine();
@@ -1531,5 +1452,3 @@
 
 </body>
 </html>
-```
-
